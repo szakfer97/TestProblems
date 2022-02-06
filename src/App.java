@@ -9,7 +9,7 @@ public class App {
         FizzBuzz(num);
         keyboard.close();
     }
-    
+
     private static void FizzBuzz(int num) {
         for (int i = 1; i <= num; i++) {
             if (i % 3 == 0 && i % 5 == 0) {
