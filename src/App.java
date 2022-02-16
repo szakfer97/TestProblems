@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class App {
@@ -9,6 +11,7 @@ public class App {
         String st = keyboard.nextLine();
         FizzBuzz(num);
         RomanToInt(st);
+        LongestSubstringWithNoRepeatingCharacters(st);
         keyboard.close();
     }
 
@@ -26,7 +29,7 @@ public class App {
         }
     }
 
-    public static int RomanToInt(String S) {
+    private static int RomanToInt(String S) {
         int ans = 0, num = 0;
         for (int i = S.length() - 1; i >= 0; i--) {
             switch (S.charAt(i)) {
@@ -58,5 +61,21 @@ public class App {
                 ans += num;
         }
         return ans;
+    }
+
+    private static String LongestSubstringWithNoRepeatingCharacters(String input) {
+        Map<Character, Integer> visited = new HashMap<>();
+        String output = "";
+        for (int start = 0, end = 0; end < input.length(); end++) {
+            char currChar = input.charAt(end);
+            if (visited.containsKey(currChar)) {
+                start = Math.max(visited.get(currChar) + 1, start);
+            }
+            if (output.length() < end - start + 1) {
+                output = input.substring(start, end + 1);
+            }
+            visited.put(currChar, end);
+        }
+        return output;
     }
 }
